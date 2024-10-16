@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
  * Time:18:30
  */
 @Extension
-@Slf4j
 public class JobRunListener extends RunListener<Run<?, ?>> {
 
     @Override

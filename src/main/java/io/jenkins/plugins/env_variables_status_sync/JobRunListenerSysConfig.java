@@ -26,7 +26,6 @@ import org.kohsuke.stapler.StaplerRequest;
 @Getter
 @Extension
 @ToString
-@Slf4j
 public class JobRunListenerSysConfig extends GlobalConfiguration {
 
     public JobRunListenerSysConfig() {

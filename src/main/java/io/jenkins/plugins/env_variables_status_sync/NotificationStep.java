@@ -30,7 +30,6 @@ import org.kohsuke.stapler.DataBoundConstructor;
  * Time:16:43
  */
 @Data
-@Slf4j
 public class NotificationStep extends Builder implements SimpleBuildStep {
 
     private String body;
@@ -50,7 +49,6 @@ public class NotificationStep extends Builder implements SimpleBuildStep {
             throws InterruptedException, IOException {
         var envVar = Utils.getEnvVars(run, listener, JobStatus.RUNNING);
         envVar.put(NOTIFY_CONTENT, body);
-        log.info("Pipeline Status Notification send notify values : {}", envVar);
         try {
 
             HttpClient.executeRequest(envVar);

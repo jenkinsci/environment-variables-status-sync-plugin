@@ -3,11 +3,12 @@ package io.jenkins.plugins.env_variables_status_sync;
 import hudson.EnvVars;
 import hudson.Extension;
 import hudson.FilePath;
-import hudson.model.*;
+import hudson.model.AbstractBuild;
+import hudson.model.BuildListener;
+import hudson.model.WorkspaceListener;
 import io.jenkins.plugins.env_variables_status_sync.enums.ConstantsEnums;
 import io.jenkins.plugins.env_variables_status_sync.enums.JobStatus;
 import io.jenkins.plugins.env_variables_status_sync.utils.HttpClient;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Author: kun.tang@daocloud.io
@@ -17,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Extension
-@Slf4j
 public class JobWorkspaceListener extends WorkspaceListener {
 
 
@@ -25,10 +25,9 @@ public class JobWorkspaceListener extends WorkspaceListener {
     public void beforeUse(AbstractBuild b, FilePath workspace, BuildListener listener) {
         super.beforeUse(b, workspace, listener);
         try {
-            EnvVars envVars =  b.getEnvironment(listener);
-            log.info("JobWorkspaceListener#beforeUse envVars:{}",envVars);
+            EnvVars envVars = b.getEnvironment(listener);
             envVars.put(ConstantsEnums.JOB_EXECUTE_STATUS.getLowCase(), JobStatus.RUNNING.name());
-            envVars.put(ConstantsEnums.BUILD_NUMBER.getLowCase(), b.getNumber()+"");
+            envVars.put(ConstantsEnums.BUILD_NUMBER.getLowCase(), b.getNumber() + "");
             envVars.put(ConstantsEnums.JOB_EXECUTE_STATUS.name(), JobStatus.RUNNING.name());
             HttpClient.executeRequest(envVars);
         } catch (Exception e) {
