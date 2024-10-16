@@ -33,12 +33,10 @@ public class JobRunListener extends RunListener<Run<?, ?>> {
 
     private static void sendStatus(Run<?, ?> run, TaskListener listener, JobStatus jobStatus) {
         try {
-            log.info("Pipeline Status Notification job status : {} ", jobStatus);
             EnvVars vars = getEnvVars(run, listener, jobStatus);
-            log.info("Pipeline Status Notification send values : {}", vars);
             HttpClient.executeRequest(vars);
         } catch (Exception e) {
-            listener.getLogger().println("Pipeline Status Notification send job status error:" + e.getMessage());
+            listener.getLogger().println("Job Environment Variables Status Sync error:" + e.getMessage());
         }
     }
 }
