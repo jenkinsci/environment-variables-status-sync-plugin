@@ -133,16 +133,13 @@ public class HttpClient {
 
             // 如果代理需要身份验证，配置认证信息
             if (proxyConfig.getUserName() != null) {
-                Authenticator proxyAuthenticator = new Authenticator() {
-                    @Override
-                    public Request authenticate(Route route, Response response) {
-                        String credential =
-                                okhttp3.Credentials.basic(proxyConfig.getUserName(), proxyConfig.getPassword());
-                        return response.request()
-                                .newBuilder()
-                                .header("Proxy-Authorization", credential)
-                                .build();
-                    }
+                Authenticator proxyAuthenticator = (route, response) -> {
+                    String credential =
+                            Credentials.basic(proxyConfig.getUserName(), proxyConfig.getPassword());
+                    return response.request()
+                            .newBuilder()
+                            .header("Proxy-Authorization", credential)
+                            .build();
                 };
                 builder.proxyAuthenticator(proxyAuthenticator);
             }
