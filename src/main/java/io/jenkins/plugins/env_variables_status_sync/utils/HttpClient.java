@@ -50,13 +50,12 @@ public class HttpClient {
         // 执行请求
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                log.info("Pipeline Status Notification send msg success : {}", response.body());
+                log.info("Job Environment Variables Status Sync send msg success : {}", response.body());
             } else {
-                log.error("Pipeline Status Notification send msg failed : {}", response.code());
+                log.error("Job Environment Variables Status Sync send msg failed : {}", response.code());
             }
         } catch (Exception e) {
-            log.info("Pipeline Status Notification requestMap : {} ,sysConfig : {}", requestMap, sysConfig);
-            log.error("Pipeline Status Notification send msg client error", e);
+            log.error("Job Environment Variables Status Sync requestMap : {} ,sysConfig : {} ,error : {}", requestMap, sysConfig,e.getMessage());
         }
 
         encoderPassword(sysConfig.getHttpHeaders());
