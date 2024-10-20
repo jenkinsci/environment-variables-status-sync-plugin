@@ -14,7 +14,6 @@ import java.util.List;
 import jenkins.model.GlobalConfiguration;
 import lombok.Getter;
 import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.StaplerRequest;
 

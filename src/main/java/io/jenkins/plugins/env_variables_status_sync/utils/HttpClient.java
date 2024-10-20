@@ -55,7 +55,11 @@ public class HttpClient {
                 log.error("Job Environment Variables Status Sync send msg failed : {}", response.code());
             }
         } catch (Exception e) {
-            log.error("Job Environment Variables Status Sync requestMap : {} ,sysConfig : {} ,error : {}", requestMap, sysConfig,e.getMessage());
+            log.error(
+                    "Job Environment Variables Status Sync requestMap : {} ,sysConfig : {} ,error : {}",
+                    requestMap,
+                    sysConfig,
+                    e.getMessage());
         }
 
         encoderPassword(sysConfig.getHttpHeaders());
@@ -134,8 +138,7 @@ public class HttpClient {
             // 如果代理需要身份验证，配置认证信息
             if (proxyConfig.getUserName() != null) {
                 Authenticator proxyAuthenticator = (route, response) -> {
-                    String credential =
-                            Credentials.basic(proxyConfig.getUserName(), proxyConfig.getPassword());
+                    String credential = Credentials.basic(proxyConfig.getUserName(), proxyConfig.getPassword());
                     return response.request()
                             .newBuilder()
                             .header("Proxy-Authorization", credential)

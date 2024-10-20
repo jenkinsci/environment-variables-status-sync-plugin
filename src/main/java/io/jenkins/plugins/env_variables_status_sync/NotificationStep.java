@@ -20,7 +20,6 @@ import io.jenkins.plugins.env_variables_status_sync.utils.Utils;
 import java.io.IOException;
 import jenkins.tasks.SimpleBuildStep;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 

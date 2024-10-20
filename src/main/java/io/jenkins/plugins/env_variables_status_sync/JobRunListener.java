@@ -10,7 +10,6 @@ import hudson.model.TaskListener;
 import hudson.model.listeners.RunListener;
 import io.jenkins.plugins.env_variables_status_sync.enums.JobStatus;
 import io.jenkins.plugins.env_variables_status_sync.utils.HttpClient;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Author: kun.tang@daocloud.io

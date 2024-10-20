@@ -15,11 +15,8 @@ import io.jenkins.plugins.env_variables_status_sync.utils.HttpClient;
  * Date:2024/10/16
  * Time:17:23
  */
-
-
 @Extension
 public class JobWorkspaceListener extends WorkspaceListener {
-
 
     @Override
     public void beforeUse(AbstractBuild b, FilePath workspace, BuildListener listener) {
@@ -33,6 +30,5 @@ public class JobWorkspaceListener extends WorkspaceListener {
         } catch (Exception e) {
             listener.getLogger().println("Job Environment Variables Status Sync error:" + e.getMessage());
         }
-
     }
 }
